@@ -1,6 +1,8 @@
 # Crosshatching
 A simple implementation of a NPR crosshatching shader based on the Siggraph 2017 talk by Yuxiao Du and Ergun Akleman, "Designing look-and-feel using generalized crosshatching".  The paper for the talk can be found here: http://dl.acm.org/citation.cfm?id=3085054
 
+![Image of the crosshatching in action](https://github.com/JonGreenberg/Crosshatching/blob/master/Example.JPG)
+
 The basic idea here is to generate a post-material that uses the world-space normal and world-space position to perform triplanar mapping of the cross-hatching pattern.  The "magic" of the technique is to map scene intensity at the pixel to more eroded/dilated versions of the crosshatch pattern to approximate artist's shading relative to intensity.  Ideally you put the various images into a texture array and map intensity to lerping between the slices.
 
 Note these files were built with Unreal Engine 4 v4.15, which lacks texture array support, which is really the way you'd want to go about doing this (to reduce texture sampling overhead and to nicely handle the odd slice count while still allowing for mipmapping).  Instead I lazily built a custom node and just brute-force the image selection.  That said, this isn't meant to be used in a title as is, just illustrate how one might get it working.
